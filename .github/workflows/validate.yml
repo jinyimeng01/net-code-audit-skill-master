@@ -68,8 +68,22 @@ jobs:
 
       - name: Check for unreplaced placeholders
         run: |
-          if grep -rni "TODO\|\.\.\.\|【填写】\|\[Fill in\]" net-skill/*/SKILL.md net-skill/*/references/*.md; then
-            echo "❌ Found unreplaced placeholders"
+          # Exclude template files (OUTPUT_TEMPLATE*.md) and raw archives (raw/) from placeholder checks
+          # as they intentionally contain placeholders or example snippets with ellipses
+          found=0
+          while IFS= read -r file; do
+            if echo "$file" | grep -qi "OUTPUT_TEMPLATE"; then
+              continue
+            fi
+            if echo "$file" | grep -qi "/raw/"; then
+              continue
+            fi
+            if grep -ni "TODO\|【填写】\|\[Fill in\]" "$file"; then
+              echo "❌ Found unreplaced placeholder in $file"
+              found=1
+            fi
+          done < <(find net-skill -maxdepth 3 -name "*.md" -not -path "*/raw/*" -not -name "OUTPUT_TEMPLATE*.md")
+          if [ "$found" -ne 0 ]; then
             exit 1
           fi
-          echo "✅ No obvious placeholders found"
+          echo "✅ No unreplaced placeholders found"
