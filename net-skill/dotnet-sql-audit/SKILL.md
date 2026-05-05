@@ -178,7 +178,7 @@ dnSpy/dnSpy.Console.exe -o {output_path}/decompiled -r bin/
 
 - 文件名格式: `{project_name}_sql_audit_{YYYYMMDD_HHMMSS}.md`
 - 不得修改模板结构、不得增删章节、不得调整顺序
-- 所有【填写】占位符必须替换为实际内容
+- 所有输出模板中的占位符必须替换为实际内容
 - 通用规范参考: [shared/DOTNET_OUTPUT_STANDARD.md](../shared/DOTNET_OUTPUT_STANDARD.md)
 
 ---

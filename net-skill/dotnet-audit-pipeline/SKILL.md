@@ -136,7 +136,7 @@ python dotnet-offsec-audit/scripts/collect_dotnet_surface.py {source_path} -o {o
 - 每个确认漏洞都有入口、调用链、sink、代码证据、证据标签、风险等级、修复建议。
 - 每个高危问题都有无害验证或说明为何无法安全验证。
 - 反编译结果必须标注来源 DLL。
-- 不保留【填写】、`TODO`、`...` 或省略式输出。
+- 不保留未替换的占位符、待办标记、省略号或省略式输出。
 - 不在最终报告中泄露完整密钥、token、连接串。
 
 ## 质量门
