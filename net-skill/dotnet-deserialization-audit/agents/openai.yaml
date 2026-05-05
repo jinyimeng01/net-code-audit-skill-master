@@ -1,0 +1,20 @@
+interface:
+  display_name: Dotnet Deserialization Audit
+  short_description: Audit .NET deserialization sinks and formatter misuse.
+  default_prompt: 'Audit .NET deserialization attack surfaces: BinaryFormatter, SoapFormatter,
+    LosFormatter, ObjectStateFormatter, Json.NET TypeNameHandling, XmlSerializer,
+    Remoting, ViewState.'
+model:
+  hints: Always trace type controllability. Check for Type.GetType(input), \, __type,
+    xsi:type. For ViewState, verify enableViewStateMac and machineKey exposure. Never
+    output weaponized gadget chains by default.
+tools:
+  recommended:
+  - ReadFile
+  - Grep
+  - WriteFile
+file_associations:
+  references:
+  - references/FORMATTER_PLAYBOOK.md
+  - references/VIEWSTATE_MACHINEKEY.md
+  - references/TYPE_CONTROL_AND_GADGETS.md

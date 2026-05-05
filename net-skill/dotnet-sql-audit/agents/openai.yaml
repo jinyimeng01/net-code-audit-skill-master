@@ -1,0 +1,21 @@
+interface:
+  display_name: Dotnet SQL Audit
+  short_description: Audit .NET SQL injection vulnerabilities.
+  default_prompt: Audit .NET database access for SQL injection. Check SqlCommand,
+    FromSqlRaw, ExecuteSqlRaw, Dapper Query, NHibernate HQL, and dynamic string concatenation
+    in SQL.
+model:
+  hints: Distinguish between parameterized queries (safe) and string concatenation/interpolation
+    (unsafe). Check EF Core raw SQL methods, ADO.NET CommandText, and stored procedure
+    calls with dynamic names.
+tools:
+  recommended:
+  - ReadFile
+  - Grep
+  - WriteFile
+file_associations:
+  references:
+  - references/ADONET.md
+  - references/EF.md
+  - references/DAPPER.md
+  - references/NHIBERNATE.md

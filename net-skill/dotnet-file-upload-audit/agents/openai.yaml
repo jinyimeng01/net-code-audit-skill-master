@@ -1,0 +1,18 @@
+interface:
+  display_name: Dotnet File Upload Audit
+  short_description: Audit .NET file upload vulnerabilities.
+  default_prompt: Audit .NET file upload handlers. Check HttpPostedFile, IFormFile,
+    SaveAs, CopyToAsync, extension validation, MIME validation, path validation.
+model:
+  hints: Look for missing extension blacklists/whitelists, MIME type spoofing, path
+    traversal in saved filenames, and dangerous upload directories executable by the
+    web server.
+tools:
+  recommended:
+  - ReadFile
+  - Grep
+  - WriteFile
+file_associations:
+  references:
+  - references/UPLOAD_RULES.md
+  - references/OUTPUT_TEMPLATE.md

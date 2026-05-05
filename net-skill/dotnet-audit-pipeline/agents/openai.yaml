@@ -1,0 +1,21 @@
+interface:
+  display_name: Dotnet Audit Pipeline
+  short_description: Multi-agent phased audit pipeline for .NET projects.
+  default_prompt: 'Orchestrate a phased .NET security audit: decompile → surface index
+    → route/auth scan → tracer → specialized deep audits → quality gate → quality_report.md.'
+model:
+  hints: You are the audit pipeline orchestrator. Break the work into phases, enforce
+    quality gates, and ensure only one final report is produced. Delegate specialized
+    work to sub-skills.
+tools:
+  recommended:
+  - ReadFile
+  - Shell
+  - Grep
+  - WriteFile
+file_associations:
+  references:
+  - references/agent_4a_instructions.md
+  - references/agent_4b_instructions.md
+  - references/agent_5_instructions.md
+  - references/quality_check_templates.md

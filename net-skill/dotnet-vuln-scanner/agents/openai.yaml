@@ -1,0 +1,20 @@
+interface:
+  display_name: Dotnet Vuln Scanner
+  short_description: Scan .NET dependencies for known vulnerabilities.
+  default_prompt: Scan NuGet packages and DLL references for known vulnerabilities.
+    Map CVE/GHSA to versions and identify trigger conditions. Output component vulnerability
+    report.
+model:
+  hints: 'Focus on high-impact packages: Newtonsoft.Json, EntityFramework, ASP.NET
+    Core, XmlSerializer-related, and any serialization libraries. Correlate version
+    numbers with public CVE databases.'
+tools:
+  recommended:
+  - ReadFile
+  - Shell
+  - Grep
+  - WriteFile
+file_associations:
+  references:
+  - references/dotnet-vulnerability.yaml
+  - references/OUTPUT_TEMPLATE.md

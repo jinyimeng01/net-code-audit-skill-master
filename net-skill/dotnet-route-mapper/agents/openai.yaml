@@ -1,0 +1,22 @@
+interface:
+  display_name: Dotnet Route Mapper
+  short_description: Enumerate .NET HTTP routes, parameters, and request templates.
+  default_prompt: Map all HTTP routes in this .NET project. Identify controllers,
+    actions, Minimal API endpoints, WebForms pages, WCF operations, ASHX/ASMX handlers.
+    Output route tables and Burp request templates.
+model:
+  hints: Cover ASP.NET Core attribute routing, conventional routing, Minimal API MapGet/MapPost,
+    WebForms Page_Load, WCF ServiceContract/OperationContract, and legacy ASMX web
+    methods.
+tools:
+  recommended:
+  - ReadFile
+  - Grep
+  - WriteFile
+file_associations:
+  references:
+  - references/ASPNETCORE.md
+  - references/MVC.md
+  - references/WEBAPI.md
+  - references/WEBFORMS.md
+  - references/WCF.md

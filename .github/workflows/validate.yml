@@ -1,0 +1,75 @@
+name: Validate Skill Suite
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Check Python script syntax
+        run: |
+          python -m py_compile net-skill/dotnet-offsec-audit/scripts/collect_dotnet_surface.py
+          python -m py_compile net-skill/dotnet-vuln-scanner/scripts/scan_dotnet_dependencies.py
+
+      - name: Verify skill directory structure
+        run: |
+          missing=0
+          for skill in net-skill/*/; do
+            name=$(basename "$skill")
+            if [ "$name" = "shared" ]; then
+              continue
+            fi
+            if [ ! -f "${skill}SKILL.md" ]; then
+              echo "❌ Missing SKILL.md in $name"
+              missing=1
+            else
+              echo "✅ $name/SKILL.md"
+            fi
+            if [ ! -d "${skill}references" ]; then
+              echo "⚠️ Missing references/ in $name"
+            fi
+          done
+          if [ "$missing" -ne 0 ]; then
+            exit 1
+          fi
+
+      - name: Check frontmatter presence
+        run: |
+          missing=0
+          for skill in net-skill/*/SKILL.md; do
+            if ! grep -q "^---" "$skill"; then
+              echo "❌ Missing frontmatter in $skill"
+              missing=1
+            fi
+          done
+          if [ "$missing" -ne 0 ]; then
+            exit 1
+          fi
+          echo "✅ All SKILL.md files have frontmatter"
+
+      - name: Verify no dnSpy binaries committed
+        run: |
+          if [ -d "dnSpy" ] || [ -d "dnSpy32" ] || [ -d "dnSpy64" ]; then
+            echo "❌ dnSpy binaries should not be committed. Use tools/setup-dnspy.ps1 instead."
+            exit 1
+          fi
+          echo "✅ No dnSpy binaries in repo"
+
+      - name: Check for unreplaced placeholders
+        run: |
+          if grep -rni "TODO\|\.\.\.\|【填写】\|\[Fill in\]" net-skill/*/SKILL.md net-skill/*/references/*.md; then
+            echo "❌ Found unreplaced placeholders"
+            exit 1
+          fi
+          echo "✅ No obvious placeholders found"

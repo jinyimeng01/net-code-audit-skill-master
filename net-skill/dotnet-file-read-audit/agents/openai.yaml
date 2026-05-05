@@ -1,0 +1,16 @@
+interface:
+  display_name: Dotnet File Read Audit
+  short_description: Audit .NET file read and path traversal vulnerabilities.
+  default_prompt: Audit .NET file read operations for path traversal. Check File.ReadAllText,
+    FileStream, StreamReader, Response.WriteFile, PhysicalFile, Server.MapPath.
+model:
+  hints: Focus on user-controlled paths that reach file system APIs. Check for ../
+    sequences, Path.Combine with external input, and missing path validation.
+tools:
+  recommended:
+  - ReadFile
+  - Grep
+  - WriteFile
+file_associations:
+  references:
+  - references/OUTPUT_TEMPLATE.md

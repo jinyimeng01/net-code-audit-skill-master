@@ -1,0 +1,16 @@
+interface:
+  display_name: Dotnet SignalR Audit
+  short_description: Audit SignalR Hub authorization, message broadcasting, group management, and transport security.
+  default_prompt: Audit SignalR Hubs for unauthorized methods, user-controlled group names, missing message validation, and CORS/WebSocket Origin misconfigurations.
+model:
+  hints: Treat Hub methods like HTTP controllers — every sensitive method needs auth. Group names are often overlooked as user input. Check stream processing for resource exhaustion.
+tools:
+  recommended:
+  - ReadFile
+  - Grep
+  - WriteFile
+file_associations:
+  references:
+  - references/HUB_AUTHORIZATION.md
+  - references/MESSAGE_AND_GROUP_SECURITY.md
+  - references/TRANSPORT_AND_CORS.md

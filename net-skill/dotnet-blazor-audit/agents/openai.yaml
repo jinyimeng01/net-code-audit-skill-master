@@ -1,0 +1,16 @@
+interface:
+  display_name: Dotnet Blazor Audit
+  short_description: Audit Blazor Server and Blazor WebAssembly rendering, JS Interop, and Circuit security.
+  default_prompt: Audit Blazor components for XSS, JS Interop misuse, Circuit state leakage, and SignalR authorization. Check MarkupString, IJSRuntime, and AuthenticationStateProvider.
+model:
+  hints: Blazor Server relies on SignalR under the hood. Check both component-level rendering and the underlying Hub connection. For WASM, verify API base address and CORS configuration.
+tools:
+  recommended:
+  - ReadFile
+  - Grep
+  - WriteFile
+file_associations:
+  references:
+  - references/BLAZOR_RENDERING_XSS.md
+  - references/JS_INTEROP_SECURITY.md
+  - references/CIRCUIT_STATE_MANAGEMENT.md

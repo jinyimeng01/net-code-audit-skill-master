@@ -1,0 +1,20 @@
+interface:
+  display_name: Dotnet Route Tracer
+  short_description: Trace call chains from entry points to security sinks.
+  default_prompt: Trace call chains from .NET entry points (Controller, Page, Handler,
+    WCF Operation) to security sinks (SQL, file, XML, command, HTTP). Output taint
+    propagation paths.
+model:
+  hints: 'Follow the data flow: Request parameter → model binding → service layer
+    → repository → sink. Document each hop with file path and line number. Mark unreachable
+    paths clearly.'
+tools:
+  recommended:
+  - ReadFile
+  - Grep
+  - WriteFile
+file_associations:
+  references:
+  - references/OUTPUT_TEMPLATE_FULL.md
+  - references/OUTPUT_TEMPLATE_INDEX.md
+  - references/OUTPUT_TEMPLATE_SIMPLE.md

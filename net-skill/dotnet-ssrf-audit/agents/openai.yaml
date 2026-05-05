@@ -1,0 +1,20 @@
+interface:
+  display_name: Dotnet SSRF Audit
+  short_description: Audit .NET SSRF and outbound request vulnerabilities.
+  default_prompt: Audit .NET outbound requests for SSRF. Check HttpClient, WebRequest,
+    WebClient, AllowAutoRedirect, URI parsing, metadata endpoints, proxy headers,
+    and remote import chains.
+model:
+  hints: Pay attention to URL parser differences (Uri vs manual string concat), DNS
+    rebinding via time-of-check/time-of-use, and metadata service access (169.254.169.254).
+    Check for redirect chains and proxy header overrides.
+tools:
+  recommended:
+  - ReadFile
+  - Grep
+  - WriteFile
+file_associations:
+  references:
+  - references/SSRF_PATTERNS.md
+  - references/URL_PARSER_AND_REDIRECTS.md
+  - references/IMPORT_AND_METADATA_CHAINS.md

@@ -1,0 +1,20 @@
+interface:
+  display_name: Dotnet Auth Audit
+  short_description: Audit .NET authentication, authorization, and access control.
+  default_prompt: Audit authentication and authorization in this .NET project. Identify
+    missing auth, bypass patterns, IDOR/BOLA/BFLA, and produce an auth_audit report.
+model:
+  hints: Focus on route-level auth mapping. Check for AllowAnonymous on admin endpoints,
+    missing anti-forgery, JWT validation flaws, and OAuth misconfigurations.
+tools:
+  recommended:
+  - ReadFile
+  - Grep
+  - WriteFile
+file_associations:
+  references:
+  - references/ASPNETCORE_AUTH.md
+  - references/AUTHORIZE_ATTR.md
+  - references/BYPASS_PATTERNS.md
+  - references/JWT.md
+  - references/OAUTH.md

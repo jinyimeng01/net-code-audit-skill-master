@@ -1,0 +1,21 @@
+interface:
+  display_name: Dotnet Offsec Audit
+  short_description: Master orchestrator for .NET offensive security code audits.
+  default_prompt: Orchestrate a complete .NET offensive security audit. Confirm authorization,
+    decompile if needed, run surface indexer, dispatch route/auth/tracer/vuln skills,
+    then specialized audits. Produce quality_report.md.
+model:
+  hints: You are the master auditor. Always start with authorization boundary confirmation.
+    If binaries are present, decompile first. Use the surface index to prioritize.
+    Never produce weaponized payloads for unauthorized targets.
+tools:
+  recommended:
+  - ReadFile
+  - Shell
+  - Grep
+  - WriteFile
+file_associations:
+  references:
+  - references/REPORT_TEMPLATE.md
+  - references/ROUTING_MATRIX.md
+  - references/RAW_REFERENCE_INDEX.md

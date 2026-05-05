@@ -1,0 +1,16 @@
+interface:
+  display_name: Dotnet Minimal API Audit
+  short_description: Audit ASP.NET Core Minimal API routes, filters, source generators, and parameter binding.
+  default_prompt: Audit ASP.NET Core Minimal API endpoints. Map all MapGet/MapPost/MapPut/MapDelete/MapPatch registrations, check AddEndpointFilter auth/validation, trace user input to sinks.
+model:
+  hints: Focus on endpoint filter bypasses, implicit parameter binding sources, and source-generated request delegates. Check OpenAPI/Swagger exposure in production.
+tools:
+  recommended:
+  - ReadFile
+  - Grep
+  - WriteFile
+file_associations:
+  references:
+  - references/MINIMAL_API_ROUTES_AND_FILTERS.md
+  - references/SOURCE_GENERATOR_SECURITY.md
+  - references/OPENAPI_EXPOSURE.md

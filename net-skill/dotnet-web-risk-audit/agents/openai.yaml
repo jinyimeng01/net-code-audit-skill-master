@@ -1,0 +1,19 @@
+interface:
+  display_name: Dotnet Web Risk Audit
+  short_description: Audit .NET web risk classes beyond core sinks.
+  default_prompt: 'Audit .NET web risks: XSS, CSRF/SameSite, CORS, Host Header, Open
+    Redirect, IDOR/BOLA/BFLA, cache deception, request smuggling.'
+model:
+  hints: Check Razor @Html.Raw, WebForms <%= %>, anti-forgery token presence, CORS
+    AllowAnyOrigin, Host header usage in URL generation, and business authorization
+    gaps.
+tools:
+  recommended:
+  - ReadFile
+  - Grep
+  - WriteFile
+file_associations:
+  references:
+  - references/WEB_RISK_PATTERNS.md
+  - references/BUSINESS_AUTHORIZATION.md
+  - references/BROWSER_AND_PROXY_BOUNDARIES.md

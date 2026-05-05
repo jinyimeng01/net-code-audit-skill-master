@@ -1,0 +1,18 @@
+interface:
+  display_name: Dotnet Command Exec Audit
+  short_description: Audit .NET command and dynamic code execution sinks.
+  default_prompt: Audit .NET command execution and dynamic code loading risks. Trace
+    user input to Process.Start, PowerShell, CodeDom, Roslyn, Assembly.Load sinks.
+model:
+  hints: Look for Process.Start with user-controlled arguments, PowerShell.Create
+    with external input, CodeDomProvider.CompileAssemblyFromSource, and plugin loading
+    from untrusted paths.
+tools:
+  recommended:
+  - ReadFile
+  - Grep
+  - WriteFile
+file_associations:
+  references:
+  - references/COMMAND_EXEC_SINKS.md
+  - references/SAFE_VALIDATION.md

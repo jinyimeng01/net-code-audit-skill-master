@@ -1,0 +1,18 @@
+interface:
+  display_name: Dotnet XXE Audit
+  short_description: Audit .NET XXE and XML parser vulnerabilities.
+  default_prompt: Audit .NET XML parsing for XXE. Check XmlDocument, XmlReader, XDocument,
+    XmlSerializer, XslCompiledTransform, SOAP parsing, OOXML/SVG import.
+model:
+  hints: Verify DtdProcessing is prohibited, XmlResolver is null, and XSLT script
+    execution is disabled. For XmlSerializer, also check type controllability as it
+    overlaps with deserialization.
+tools:
+  recommended:
+  - ReadFile
+  - Grep
+  - WriteFile
+file_associations:
+  references:
+  - references/PARSERS.md
+  - references/OUTPUT_TEMPLATE.md

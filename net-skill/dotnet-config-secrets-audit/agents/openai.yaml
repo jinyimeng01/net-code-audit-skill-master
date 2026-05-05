@@ -1,0 +1,18 @@
+interface:
+  display_name: Dotnet Config Secrets Audit
+  short_description: Audit .NET configuration secrets and deployment exposures.
+  default_prompt: 'Audit .NET configuration files and deployment for secret leakage:
+    machineKey, connectionStrings, JWT secrets, debug modes, exposed Swagger/ELMAH/Hangfire.'
+model:
+  hints: Never output raw secrets. Redact keys and tokens. Focus on machineKey implications
+    for ViewState forgery, JWT key rotation needs, and IIS misconfigurations.
+tools:
+  recommended:
+  - ReadFile
+  - Grep
+  - WriteFile
+file_associations:
+  references:
+  - references/CONFIG_SECRETS_CHECKLIST.md
+  - references/MACHINEKEY_TOKEN_IMPACT.md
+  - references/DEPLOYMENT_EXPOSURE.md
